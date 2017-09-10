@@ -2,9 +2,9 @@
 * Bonsai
 * Python (Ananconda)
 * Visual Studio (latest)
-* Autodeak Inventor
+* Autodesk Inventor
 * Arduino
-* AVR assmebler and AVRdude
+* AVR assmebler and AVRdude (Atmel Studio)
 * Fiji (imagej)
 * GitHub Desktop
 * Notepad++
