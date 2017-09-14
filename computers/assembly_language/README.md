@@ -31,7 +31,7 @@ avrdude -v -p ATmega328p -c arduino -P com3 -b 115200 -D -U flash:w:yourfile.hex
 * The com port number of your Arduino UNO is listed in the Windows "Device Manager".
 
 ### Pay attention to the Pin/Port names and their position on the Arduino board
-![ATmega328P Pin Mapping](/reference/ATmega328P_mapping.jpg "Atmel Mega328P pin mapping on Arduino")
+![ATmega328P Pin Mapping](reference/ATmega328P_mapping.jpg "Atmel Mega328P pin mapping on Arduino")
 
 ## Authors
 
