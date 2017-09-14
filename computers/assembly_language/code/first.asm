@@ -12,12 +12,12 @@ RJMP	main					; Write the instruction to jump to "main" label
 
 main:							; Sets all pins to "Output" mode
 	LDI		r16, 0xFF			; Load the immedate value 0xFF (all bits 1) into register 16
-	OUT		0x04, r16			; Set Data Direction Register B (0x04) to output for all pins
+	OUT		DDRB, r16			; Set Data Direction Register B (0x04) to output for all pins
 
 loop:
-	SBI		0x05, 5				; Set the 5th bit in PortB (0x05). (i.e. turn on the LED)
+	SBI		PORTB, 5				; Set the 5th bit in PortB (0x05). (i.e. turn on the LED)
 	RCALL	delay				; Call the "delay" sub routine, stores current program location (+1) on the Stack
-	CBI		0x05, 5				; Clear the 5th bit in PortB (0x05). (i.e. turn off the LED)
+	CBI		PORTB, 5				; Clear the 5th bit in PortB (0x05). (i.e. turn off the LED)
 	RCALL	delay				; Call the "delay" sub routine, stores current program location (+1) on the Stack
 	RJMP	loop				; Jump to "Loop" label (again)
 

@@ -144,7 +144,7 @@
 .equ	PORTB	= 0x05
 .equ	DDRB	= 0x04
 .equ	PINB	= 0x03
-
+; There is no PORT/PINA
 
 ; ***** BIT DEFINITIONS **************************************************
 
