@@ -84,3 +84,4 @@ int main(int, char**)
 
 Build, run, and have fun!
 
+Wait...it won't run because only the compiler knows where OpenCV is...not your program. The simplest way to fix this is to copy the DLLs you use to the same folder as your executable. Do that....copy "opencv_world330d.dll" to your exe's folder. The DLL
