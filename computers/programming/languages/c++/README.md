@@ -109,9 +109,9 @@ int main(int, char**)
 
 ***Build, run, and have fun!***
 
-***Wait!***...it won't run. *Only* the compiler knows where OpenCV's binary files are located...not your program (executable).
-    * The simplest way to fix this is to copy the DLLs (dynamic link libraries, a type of windows binary that links to your executable at run time) to the same folder as your executable. Do that now...copy "opencv_world330d.dll" to your exe's folder. The DLL is found here:
-        * "...\opencv\build\x64\vc14\bin"
+**Wait!** ...it won't run. *Only* the compiler knows where OpenCV's binary files are located...not your program (executable).
+	* The simplest way to fix this is to copy the DLLs (dynamic link libraries, a type of windows binary that links to your executable at run time) to the same folder as your executable. Do that now...copy "opencv_world330d.dll" to your exe's folder. The DLL is found here:
+		* "...\opencv\build\x64\vc14\bin"
 
 ## Challenge
 Write a program in C++ that uses OpenCV to detect the largest RED object in the camera frame and prints the X and Y pixel coordinates of this object's centre to the terminal window.
