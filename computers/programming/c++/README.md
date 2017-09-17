@@ -40,7 +40,7 @@ We will use the OpenCV library to grab data from a standard webcam and process i
  * Select the *.exe version and run it. This will self-extract an archive to a location you specify. Remember this location!
 
 We must now tell Visual Studio (VS) where the OpenCV libraries are located.
-**Important**: We will use the 64-bit version of OpenCV, so switch your VS project build to "x64".
+ * **Important**: We will use the 64-bit version of OpenCV, so switch your VS project build to "x64".
 
 2. Open your VS project "properies" page(s). You can simply right-click on the name of your project.
 3. Under the "C/C++" property section, add the location of your OpenCV include path in the "Additional Include Directories" field.
