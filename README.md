@@ -7,4 +7,4 @@ The essential tools (hardware, software, and documentation) used to open black b
 
 ## Getting Started
 
-Go through the grey box tutorials.
+Go through the grey box tutorials, ideally starting with "computers".

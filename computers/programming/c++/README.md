@@ -1,16 +1,16 @@
 # C++ (hello camera)
 
-A step-by-step walkthrough of creating a C++ project in Visual Studio that acquires images from a camera and measures motion.
+A step-by-step walkthrough for creating a C++ project in Visual Studio that acquires images from a camera and measures motion.
 
 ## Getting Started
 
-* Install Visual Studio (Viusal Studio Community 2017). Make sure you install support for C++.
-* Open Visual Studio
-* Create a New project
-* Select Visual C++ - Win32 - Console application as your template
-* Give the project a name (this will create a project folder) and choose its location
-* On the pop-up window, click "Next" and then check the box next to "Empty Project"
-* Click Finish
+1. Install Visual Studio (Visual Studio Community 2017). Make sure you select support for C++.
+2. Run Visual Studio.
+3. Create a New project
+ * Select Visual C++ -> Win32 -> Console application as your template
+ * Give the project a name (this will create a project folder) and choose its location
+ * On the pop-up window, click "Next" and then check the box next to "Empty Project"
+ * Click Finish
 
 You will now have an empty Visual C++ project. It contains only the common folder structure and project files, no source code files.
 
