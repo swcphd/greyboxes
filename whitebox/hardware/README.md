@@ -27,7 +27,7 @@ A list of equipment contained in the White Box tool kit.
  * Resistor set
  * Capacitor set (ceramic and electrolytic)
  * Potentionmeter
- * MOSEFT: NPN [IRF 510](greyboxes/computers/transistors/reference/IRF510.pdf)
+ * MOSEFT: NPN [IRF 510](../../greyboxes/computers/transistors/reference/IRF510.pdf)
  * LEDs
 3. Sensors
  * LDR (light dependent resistors)
