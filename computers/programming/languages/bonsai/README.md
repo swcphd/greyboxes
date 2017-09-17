@@ -9,7 +9,7 @@ There a number of resources for learning Bonsai. Just quickly:
 3. Select *Tools -> Manage Packages*
 	* Search for "Starter Pack" and install
 	* Close the package manager
-4. Open the workflow "hello_camera.bonsai" [Workflows](/hello_camera/)
+4. Open the workflow "hello_camera.bonsai" [Workflows](hello_camera/)
 
 ***Have fun!***
 
