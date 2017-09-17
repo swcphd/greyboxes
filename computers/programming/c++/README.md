@@ -18,7 +18,7 @@ You will now have an empty Visual C++ project. It contains only the common folde
 
 Now you can write some code.
 
-```
+```c++
 //Hello World
 #include <iostream>
 #include <string>
@@ -31,6 +31,10 @@ int main()
 }
 ```
 
+If you prefer, you can also compile this source fiel directly from the command line. 
+[CMD Compile Windows](https://msdn.microsoft.com/en-us/library/ms235639.aspx)
+
+
 We will use the OpenCV library to grab data from a standard webcam and process images.
 * Download OpenCV version 3.3 [OpenCV GitHub](https://github.com/opencv/opencv/releases/tag/3.3.0)
 * Select the *.exe version and run it. This will self-extract an archive to a location you specify. Remember this location!
@@ -39,16 +43,16 @@ We must now tell Visual Studio (VS) where the OpenCV libraries are located.
 * Important: We will use the 64-bit version of OpenCV, so switch your VS project build to "x64".
 * Open your VS project "properies" page(s). You can simply right-click on the name of your project.
 * Under the "C/C++" property section, add the location of your OpenCV include path in the "Additional Include Directories" field.
-- This location should be: "...\opencv\build\include"
+..* This location should be: "...\opencv\build\include"
 
 This will tell you VS project where to find the OpenCV header files. You now need to tell it where to find the binary files.
 * Open your VS project "properies" page(s).
 * Under the "Linker" property section, select the "General" sub-section. Add the location of your OpenCV library path in the "Additional Library Directories" field.
-- This location should be: "...\opencv\build\x64\vc14\lib"
+..* This location should be: "...\opencv\build\x64\vc14\lib"
 * Under the "Linker" property section, select the "Input" sub-section. Add the names of the OpenCV libraries you will use in the "Additional Dependencies" field.
-- Add all of the following: opencv_world330d.lib
+..* Add all of the following: opencv_world330d.lib
 
-```
+```c++
 // Hello Camera
 #include <iostream>
 #include <string>
