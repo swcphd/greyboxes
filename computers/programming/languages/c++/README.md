@@ -1,6 +1,6 @@
 # C++ (hello camera)
 
-A step-by-step walkthrough for creating a C++ project in Visual Studio that acquires images from a camera and measures motion.
+A step-by-step walkthrough for creating a C++ project in Visual Studio that acquires images from a camera and measures frame-by-frame pixel differences.
 
 ## Getting Started
 
@@ -39,7 +39,8 @@ We will use the OpenCV library to grab data from a standard webcam and process i
     * Select the *.exe version and run it when it is downloaded. This will self-extract an archive to a location you specify. *Remember this location!*
 
 We must now tell Visual Studio (VS) where the OpenCV libraries (header and binary files) are located.
- * **Important**: We will use the 64-bit version of OpenCV, so switch your VS project build to "x64". A dropdown menu on the top VS toolbar can be used to select "x64-Debug"
+ * **Important**: We will use the 64-bit version of OpenCV, so switch your VS project build to "x64". 
+	* A dropdown menu on the top VS toolbar can be used to select "x64-Debug"
 
 2. Open your VS project's "properties" page(s). You can simply right-click on the name of your project in the *Solution Explorer*
 3. Under the "C/C++" property section, add the location of your OpenCV *include* folder in the "Additional Include Directories" field.
