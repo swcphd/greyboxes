@@ -10,7 +10,7 @@ import math
 import time
 
 # Specify camera/device number (usually 0)
-camera = 1
+camera = 0
 
 # Specifiy number of frames to acquire
 num_frames = 100
@@ -22,7 +22,7 @@ cam = cv2.VideoCapture(camera)
 width = int(cam.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-# Make space for intermediate images (or correct data type)
+# Make space for intermediate images (of correct data type)
 gray = np.zeros((height, width), dtype = np.uint8)
 gray_float = np.zeros((height, width), dtype = np.float32)
 previous = np.zeros((height, width), dtype = np.float32)
@@ -42,8 +42,7 @@ for i in range(0, num_frames):
     
     # Ignore first image
     if (i == 0):
-       print("Start...\n")
-              
+       print("Running\n")              
     else:
         # Subtract previous image
         difference = np.abs(gray_float-previous)
