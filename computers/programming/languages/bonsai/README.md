@@ -1,4 +1,4 @@
-# Bonsai (hello camera
+# Bonsai (hello camera)
 A visual programming enviornment written in C# and based on Microsoft's Rx (Reactive) extensions.
   * [Download and tutorials can be found here](http://bonsai-rx.org/)
 
