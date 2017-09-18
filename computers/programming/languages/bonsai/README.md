@@ -8,6 +8,7 @@ There a number of resources for learning Bonsai. Just quickly:
 2. Run Bonsai
 3. Select *Tools -> Manage Packages*
 	* Search for "Starter Pack" and install
+	* Search for "Video Design Library" and install (this also installs the "Video Library")
 	* Close the package manager
 4. Open the workflow "hello_camera.bonsai" [Workflows](hello_camera/)
 

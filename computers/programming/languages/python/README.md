@@ -39,6 +39,10 @@ OpenCV should now be installed in your Python distribution. To test this, restar
 import cv2
 ```
 If this command does not reply with an error (e.g. "Module Not Found"), then you are ready to go.
+	* *Note:* You may get an error that a "numpy.core..." module was the wrong version. This means that your version of OpenCV requires a more recent version of NumPy than the one installed by Anaconda. You can "upgrade" your NumPy to the latest version by running the following command at the Anaconda prompt, and then restarting Spyder.
+```
+pip install numpy --upgrade
+```
 
 **Now you can write some OpenCV Python code.**
 
