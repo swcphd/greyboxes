@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Webpage - Javascript</title>
+</head>
+<body>
+
+<h2>JavaScript Button</h2>
+
+<button type="button" onclick="days_since_1979_12_10()">Click me!</button>
+
+<p id="days"></p>
+
+<script>
+function days_since_1979_12_10() {	
+	// Get Days since 1979-12-10 (December is month "11")
+	var date = new Date();
+	var ref_date = new Date('1979', '11', '10');
+	var one_day = 24*60*60*1000; // days*hours*minutes*seconds*milliseconds
+	var diff_days = Math.round(Math.abs((date.getTime() - ref_date.getTime())/one_day));
+	
+	var msg1 = "It has been ";
+	var msg2 = " glorious days."
+	document.getElementById("days").innerHTML = msg1.concat(diff_days.toString()).concat(msg2);	
+}
+</script>
+
+</body>
+</html>
