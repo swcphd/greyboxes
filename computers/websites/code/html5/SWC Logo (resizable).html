@@ -1,0 +1,206 @@
+<CENTER>
+<canvas id="viewport">Your browser does not support the canvas element.</canvas>
+</CENTER>
+
+<script type="text/javascript" charset="utf-8">
+
+// Keep everything in anonymous function, called on window load.
+if (window.addEventListener) {
+window.addEventListener('load', function () {
+var canvas, context;
+var mouseX = 0; var prevMouseX = 0;
+var mouseY = 0; var prevMouseY = 0;
+var motionX = 0;
+var prevState = false;
+
+var moving = false;
+var logoPhase = 0;  var logoSpeed = 0;
+var myTimer;
+var imageObj;
+
+// Logo Size and Position
+var logo_width;
+var logo_height;
+var logo_x;
+var logo_y;
+
+// Animation
+var count = 0;
+
+// Initialization sequence.
+function init() {
+// Find the canvas element.
+canvas = document.getElementById('viewport');
+//canvas.style.cursor = 'none';                      // Turn Off Cursor
+canvas.onselectstart = function () { return false; } // ie
+canvas.onmousedown = function () { return false; }   // mozilla
+canvas.style.border = "none";
+
+if (!canvas) {
+alert('Error: I cannot find the canvas element!');
+return;
+}
+
+if (!canvas.getContext) {
+alert('Error: no canvas.getContext!');
+return;
+}
+
+// Get the 2D canvas context.
+context = canvas.getContext('2d');
+if (!context) {
+alert('Error: failed to getContext!');
+return;
+}
+
+//// Initialize Animation
+myTimer=setInterval(loop,33);
+moving = true; // Start with animated
+
+// Attach the mousemove event handler.
+window.addEventListener('mousemove', ev_mousemove, false);
+canvas.addEventListener('click', ev_click, false);
+window.addEventListener('resize', ev_resize);
+redraw();
+}
+
+
+// The mousemove event handler.
+function ev_mousemove(e) {
+var x = e.pageX;
+var y = e.pageY;
+
+prevMouseX = mouseX;
+prevMouseY = mouseY;
+mouseX = x;
+mouseY = y;
+motionX =  prevMouseX - mouseX;
+
+redraw();
+}
+
+// The ev_click event handler.
+function ev_click(e) {
+if(prevState)
+{
+motionX = -33;
+prevState = false;
+redraw();
+} else {
+motionX = 33;
+prevState = true;
+redraw();
+}
+
+}
+
+// The ev_resize event handler.
+function ev_resize(e) {
+redraw();
+}
+
+function loop() {
+
+//mouseX = mouseX + 6.0*Math.sin(0.011*count);
+//mouseY = mouseY + 3.0*Math.sin(0.020*count);
+
+if(motionX > 4 || motionX  < -4)
+{
+if (motionX > -35 && motionX < 35)
+{
+logoPhase = logoPhase + motionX/25;
+logoSpeed = motionX/25;
+motionX = 0;
+} else {
+if (motionX < 0)
+{
+motionX = -35;
+} else {
+motionX = 35;
+}
+logoPhase = logoPhase + motionX/25;
+logoSpeed = motionX/25;
+motionX = 0;
+}
+} else {
+logoPhase = logoPhase + logoSpeed;
+}
+logoSpeed  = logoSpeed/1.05;
+
+count = count + 1.0;
+
+redraw();
+}
+
+function redraw() {
+
+// Set Logo Size
+if (window.innerWidth < 512)
+{
+	logo_width = window.innerWidth; //512;
+} else {
+	logo_width = 512
+}
+logo_height = logo_width/4; //128;
+canvas.width = logo_width;
+canvas.height = logo_height;
+
+// Set Logo Position
+logo_x = 0;
+logo_y = 0;
+
+// Scale and Centre Bars
+var width = logo_width/2; 	//256;
+var height = logo_height/2; //64;
+var xOff = logo_width/4;	//128
+var yOff = logo_height/8;	//16
+var xCenter = logo_width/2;	//256;
+var yCenter = logo_height/2;//64;
+
+// Draw Bars
+var numBars = 19;
+var spacing = width/numBars;
+var offset = spacing/2;
+var barWidth = width/(numBars*3);
+var barHeight = height*0.9; //54
+var barMiddleY = yOff + height/2;
+
+var freq = numBars/9;
+var phase = 50 + logoPhase;
+
+var minWidth = barWidth/1.6;
+
+var heightStep = barHeight/4;
+
+// Create a sinusoidal modulus function
+var modulation = [];
+var density = [];
+var pi  = 3.14150;
+for (var i = 0; i < numBars; i++) {
+modulation[i] = (1.0 + Math.sin(-2.5+(i+phase)/freq))/2.0;
+density[i] = 1 *  Math.sin(pi/2+ -2.5+(i+phase)/freq);
+}
+
+// SWC Logo Colour
+rectColor = "rgba( " + 0 + ", " + 78 + ", " + 168 + ", " + 1.0 + ")";
+context.fillStyle = rectColor;
+for (var i = 0; i < numBars; i++) {
+context.beginPath();
+var thisHeight = barHeight + 10*modulation[i] - ((i%2) * heightStep)
+context.rect(xOff + spacing*i + density[i], barMiddleY - thisHeight/2, barWidth*modulation[i] + minWidth, thisHeight);
+context.closePath();
+context.fill();
+}
+// SWC Logo Text
+context.fillStyle = "black";
+// Create Dynamic Font String to adjust text size
+var fontSize = 28 * (logo_width/512);
+context.font = 'bold ' + fontSize + 'px Arial';
+context.textAlign = 'center';
+context.fillText("Sainsbury Wellcome Centre", xCenter, yCenter + barHeight);
+}
+
+init();
+}, false);
+}
+</script>

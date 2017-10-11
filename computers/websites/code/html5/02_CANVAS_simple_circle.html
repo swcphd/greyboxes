@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+
+<head runat="server">
+<title>Simple Circle Canvas</title>
+</head>
+
+<body>
+
+<CENTER>
+    <canvas id="viewport"> Your browser does not support the canvas element.</canvas>	
+</CENTER>
+
+<script type="text/javascript" charset="utf-8">
+
+    // Place everything in anonymous function, called on window load.
+    if (window.addEventListener) {
+	window.addEventListener('load', function () {
+			
+			// Variables
+            var canvas, context;
+			
+			// Progamme
+            init();
+			
+
+			// Function Definitions
+			//---------------------
+			
+            // Initialization
+            function init() {
+                // Find the canvas element.
+                canvas = document.getElementById('viewport');
+                //canvas.style.cursor = "none";                         // Turn Off Cursor
+				//canvas.style.border = "none";							// Turn Off Border
+
+                // Get the 2D canvas context
+                context = canvas.getContext('2d');
+				
+				// Attach the event handlers
+				window.addEventListener("resize", ev_resize); 
+
+				// Call redraw() to finish initialization
+                redraw();
+            }
+			
+			// Redraw canvas
+            function redraw() {
+				// Full Window Canvas
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                canvas.width = canvas.width; // Clears the canvas
+				
+				// Draw Circle
+				draw_grey_circle(100,100,10, 0, 1.0);
+			}
+			
+			// The ev_resize event handler.
+            function ev_resize(e) {
+                redraw();
+            }
+		
+			// Draw Circle
+			function draw_grey_circle(x, y, radius, intensity, alpha) {
+				// Draw central target
+				color = "rgba( " + intensity + ", " + intensity + ", " + intensity + ", " + alpha + ")";
+				context.fillStyle = color;
+				context.beginPath();
+				context.arc(x, y, radius, 0, Math.PI * 2, true);
+				context.closePath();
+				context.stroke();
+				context.fill();
+			}
+
+       
+	   }, false);
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+
+<head runat="server">
+<title>Cursor Follow Canvas</title>
+</head>
+
+<body>
+
+<CENTER>
+    <canvas id="viewport" style="border:10px solid #aaaaaa;">> Your browser does not support the canvas element.</canvas>	
+</CENTER>
+
+<script type="text/javascript" charset="utf-8">
+
+    // Place everything in anonymous function, called on window load.
+    if (window.addEventListener) {
+	window.addEventListener('load', function () {
+			
+			// Variables
+            var canvas, context;
+			var x_pos = 0;
+			var y_pos = 0;
+			
+			// Progamme
+            init();
+			
+
+			// Function Definitions
+			//---------------------
+			
+            // Initialization
+            function init() {
+                // Find the canvas element.
+                canvas = document.getElementById('viewport');
+                canvas.style.cursor = "none";                         // Turn Off Cursor
+				//canvas.style.border = "none";						  // Turn Off Border
+
+                // Get the 2D canvas context
+                context = canvas.getContext('2d');
+				
+				// Attach the event handlers
+				window.addEventListener("resize", ev_resize);
+				canvas.addEventListener('mousemove', ev_mousemove, false);
+
+				// Call redraw() to finish initialization
+                redraw();
+            }
+			
+			// Redraw canvas
+            function redraw() {
+				// Full Window Canvas
+                canvas.width = window.innerWidth/2;
+                canvas.height = window.innerHeight/2;
+                canvas.width = canvas.width; // Clears the canvas
+				
+				// Draw Circle
+				draw_grey_circle(x_pos,y_pos,10, 0, 1.0);
+			}
+			
+			// The ev_resize event handler.
+            function ev_resize(e) {
+                redraw();
+            }
+			
+			// The ev_mousemove event handler.
+            function ev_mousemove(e) {
+				x_pos = e.pageX - this.offsetLeft;
+				y_pos = e.pageY - this.offsetTop;
+                redraw();
+            }
+		
+		
+			// Draw Circle
+			function draw_grey_circle(x, y, radius, intensity, alpha) {
+				// Draw central target
+				color = "rgba( " + intensity + ", " + intensity + ", " + intensity + ", " + alpha + ")";
+				context.fillStyle = color;
+				context.beginPath();
+				context.arc(x, y, radius, 0, Math.PI * 2, true);
+				context.closePath();
+				context.stroke();
+				context.fill();
+			}
+
+       
+	   }, false);
+    }
+    </script>
+
+</body>
+</html>

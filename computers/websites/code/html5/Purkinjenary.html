@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title>Welcome to Purkinjenary</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27867600-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+<CENTER>
+    Purkinjenary (press any key to play!)<br>
+    <canvas id="viewport" width="800" height="800" style="border:10px solid #aaaaaa;">
+    Your browser does not support the canvas element.
+    </canvas>
+</CENTER>
+
+<script type="text/javascript" charset="utf-8">
+
+    // Keep everything in anonymous function, called on window load.
+    if (window.addEventListener) {
+        window.addEventListener('load', function () {
+            var canvas, context;
+
+            var clickX = new Array();
+            var clickY = new Array();
+            var mouseX;
+            var mouseY;
+            var clickDrag = new Array();
+            var paint = false;
+            var fucked = false;
+
+            // Initialization sequence.
+            function init() {
+                // Find the canvas element.
+                canvas = document.getElementById('viewport');
+                canvas.style.cursor = 'none';                           // Turn Off Cursor
+                canvas.onselectstart = function () { return false; } // ie
+                canvas.onmousedown = function () { return false; } // mozilla
+
+                if (!canvas) {
+                    alert('Error: I cannot find the canvas element!');
+                    return;
+                }
+
+
+                if (!canvas.getContext) {
+                    alert('Error: no canvas.getContext!');
+                    return;
+                }
+
+                // Get the 2D canvas context.
+                context = canvas.getContext('2d');
+                if (!context) {
+                    alert('Error: failed to getContext!');
+                    return;
+                }
+
+                // Attach the mousemove event handler.
+                canvas.addEventListener('mousemove', ev_mousemove, false);
+                canvas.addEventListener('mousedown', ev_mousedown, false);
+                canvas.addEventListener('mouseup', ev_mouseup, false);
+                window.addEventListener('keydown', ev_keypress, false);
+                redraw();
+            }
+
+            // The mousemove event handler.
+            function ev_keypress(e) {
+                fucked = !fucked;
+                clickX = [];
+                clickY = [];
+                clickDrag = [];
+                canvas.width = canvas.width; // Clears the canvas
+                redraw();
+            }
+
+            // The mousemove event handler.
+            function ev_mousedown(e) {
+                if (fucked) {
+                    paint = true;
+                    addClick(mouseX, mouseY, false);
+                }
+                redraw();
+            }
+
+            function ev_mousemove(e) {
+                var x = e.pageX - this.offsetLeft;
+                var y = e.pageY - this.offsetTop;
+
+                if (fucked) {
+                    mouseY = x;
+                    mouseX = y;
+                } else {
+                    mouseY = y;
+                    mouseX = x;
+                }
+                if (paint == true) {
+                    addClick(mouseX, mouseY, true);
+                }
+                redraw();
+            }
+
+            function ev_mouseup(ev) {
+                paint = false;
+                redraw();
+            }
+
+            function addClick(x, y, dragging) {
+                clickX.push(x);
+                clickY.push(y);
+                clickDrag.push(dragging);
+            }
+
+            function redraw() {
+                canvas.width = window.innerHeight - 50;
+                canvas.height = window.innerHeight - 50;
+
+                canvas.width = canvas.width; // Clears the canvas
+
+                if (!fucked) {
+                    // Darw central target
+                    rectColor = "rgba( " + 210 + ", " + 210 + ", " + 210 + ", " + 0.2 + ")";
+                    context.fillStyle = rectColor;
+                    context.beginPath();
+                    context.arc(canvas.width / 2, canvas.width / 2, 20, 0, Math.PI * 2, true);
+                    context.closePath();
+                    context.stroke();
+                    context.fill();
+                }
+
+                // Draw fake cursor
+                if (!fucked) {
+                    rectColor = "rgba( " + 256 + ", " + 0 + ", " + 0 + ", " + 1.0 + ")";
+                } else {
+                    rectColor = "rgba( " + 0 + ", " + 256 + ", " + 0 + ", " + 0.5 + ")";
+                }
+                context.fillStyle = rectColor;
+                context.beginPath();
+                context.arc(mouseX, mouseY, 5, 0, Math.PI * 2, true);
+                context.closePath();
+                context.stroke();
+                context.fill();
+
+                context.strokeStyle = "#000000";
+                context.lineJoin = "round";
+                context.lineWidth = 5;
+
+                for (var i = 0; i < clickX.length; i++) {
+                    context.beginPath();
+                    if (clickDrag[i] && i) {
+                        context.moveTo(clickX[i - 1], clickY[i - 1]);
+                    } else {
+                        context.moveTo(clickX[i] - 1, clickY[i]);
+                    }
+                    context.lineTo(clickX[i], clickY[i]);
+                    context.closePath();
+                    context.stroke();
+                }
+            }
+
+
+            init();
+        }, false);
+    }
+    </script>
+
+</body>
+</html>

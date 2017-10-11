@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+
+<head runat="server">
+<title>Cursor Circle Line Canvas</title>
+</head>
+
+<body>
+
+<CENTER>
+    <canvas id="viewport" style="border:10px solid #aaaaaa;">> Your browser does not support the canvas element.</canvas>	
+</CENTER>
+
+<script type="text/javascript" charset="utf-8">
+
+    // Place everything in anonymous function, called on window load.
+    if (window.addEventListener) {
+	window.addEventListener('load', function () {
+			
+			// Variables
+            var canvas, context;
+			var x_pos = 0, x_pre = 0;
+			var y_pos = 0, y_pre = 0;
+			var dir = 0;
+			
+			// Progamme
+            init();
+			
+
+			// Function Definitions
+			//---------------------
+			
+            // Initialization
+            function init() {
+                // Find the canvas element.
+                canvas = document.getElementById('viewport');
+                canvas.style.cursor = "none";                         // Turn Off Cursor
+				//canvas.style.border = "none";						  // Turn Off Border
+
+                // Get the 2D canvas context
+                context = canvas.getContext('2d');
+				
+				// Attach the event handlers
+				window.addEventListener("resize", ev_resize);
+				canvas.addEventListener('mousemove', ev_mousemove, false);
+
+				// Call redraw() to finish initialization
+                redraw();
+            }
+			
+			// Redraw canvas
+            function redraw() {
+				// Full Window Canvas
+                canvas.width = window.innerWidth/2;
+                canvas.height = window.innerHeight/2;
+                canvas.width = canvas.width; // Clears the canvas
+				
+				// Draw Circle and Oriented Red Line
+				draw_grey_circle(x_pos,y_pos,10, 0, 1.0);
+				draw_red_line(x_pos,y_pos,cur_dir + Math.PI, 50, 2, 255, 0.25);
+
+			}
+			
+			// The ev_resize event handler.
+            function ev_resize(e) {
+                redraw();
+            }
+			
+			// The ev_mousemove event handler.
+            function ev_mousemove(e) {
+				x_pre = x_pos;
+				y_pre = y_pos;
+				x_pos = e.pageX - this.offsetLeft;
+				y_pos = e.pageY - this.offsetTop;
+			
+				// Measure orientation of last move
+				dx = (x_pos-x_pre);
+				dy = (y_pos-y_pre);
+				if ((Math.abs(dx) + Math.abs(dy)) > 0)
+				{
+					cur_dir = Math.atan2(dy, dx);
+					//dir = (cur_dir * 0.5) + (dir * 0.5);	
+				}
+				redraw();
+				
+				// Debug Maths
+				var txt = cur_dir.toString();
+				draw_debug_text(100,100, txt);
+            }
+		
+		
+			// Draw Oriented Red Line
+			function draw_red_line(x, y, ort, length, width, intensity, alpha) {
+				color = "rgba( " + intensity + ", " + 0.0 + ", " + 0.0 + ", " + alpha + ")";
+				context.strokeStyle = color;
+				context.beginPath();
+				offX = Math.cos(ort)*length;
+				offY = Math.sin(ort)*length;
+				context.moveTo(x, y);
+				context.lineTo(x+offX, y+offY);
+				context.lineWidth = width;
+				context.stroke();
+			}
+
+			// Draw Circle
+			function draw_grey_circle(x, y, radius, intensity, alpha) {
+				color = "rgba( " + intensity + ", " + intensity + ", " + intensity + ", " + alpha + ")";
+				context.fillStyle = color;
+				context.strokeStyle = color;
+				context.beginPath();
+				context.arc(x, y, radius, 0, Math.PI * 2, true);
+				context.closePath();
+				context.stroke();
+				context.fill();
+			}
+			
+			// Draw Debug Text
+			function draw_debug_text(x, y, string) {
+				context.font = 'bold 10pt Calibri';
+				context.fillText(string, x, y);
+			}
+       
+	   }, false);
+    }
+    </script>
+
+</body>
+</html>
