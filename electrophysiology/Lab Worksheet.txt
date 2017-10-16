@@ -1,0 +1,15 @@
+5 days
+
+M - Lecture (2 hours) - Lab intro:
+
+- Basic Ohm's law stuff
+- RC
+- Diodes and Transistors
+
+W - Build filters, drive LEDs: High-pass in Low-Pass filter
+ - Audio input, speaker - 2 x Thorlabs LED drivers? (Via Diode)
+
+
+F - EEG (use InTan)
+    - Instrument AMP, 20x gain, low-pass filter (49 Hz), 
+		
