@@ -1,10 +1,10 @@
 # Greyboxes
 
-Greyboxes is a 3-week intensive, hands-on course meant to open the technological "black boxes" that are at work all around us from our "smart" phones to our Oyster cards. By opening these black boxes, we aim to better understand just how smart (or not) these devices are.
+Greyboxes is a 3-week, hands-on course meant to open the technological "black boxes" that are at work all around us. By opening these black boxes—from our "smart" phones to our Oyster cards— we aim to better understand just how smart (or not) these devices are.
 
 The overarching metaphor running through the course is [the evolution of the mammalian brain](https://en.wikipedia.org/wiki/Evolution_of_the_brain#Early_history_of_brain_development):
 
-nerve nets? --100M years --> [hindbrain](./hindbrain/) -- 250M years --> [midbrain](./midbrain/) -- 200M years --> [forebrain](./forebrain)
+nerve nets? -- 100M years --> [hindbrain](./hindbrain/) -- 250M years --> [midbrain](./midbrain/) -- 200M years --> [forebrain](./forebrain)
 
 
 ## Goals of this course
