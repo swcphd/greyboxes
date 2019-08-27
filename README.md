@@ -4,7 +4,7 @@ Greyboxes is a 3-week, hands-on course meant to open the technological "black bo
 
 The overarching metaphor running through the course is [the evolution of the mammalian brain](https://en.wikipedia.org/wiki/Evolution_of_the_brain#Early_history_of_brain_development):
 
-nerve nets? -- 100M years --> [hindbrain](./hindbrain/) -- 250M years --> [midbrain](./midbrain/) -- 200M years --> [forebrain](./forebrain)
+nerve nets? -- 100M years --> [hindbrain](./1_hindbrain/) -- 250M years --> [midbrain](./2_midbrain/) -- 200M years --> [forebrain](./3_forebrain)
 
 
 ## Goals of this course
