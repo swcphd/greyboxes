@@ -1,0 +1,11 @@
+import time
+import matplotlib
+
+times = []
+for i in range(1000):
+	start = time.now()
+	time.sleep(100)
+	stop = time.now()
+	times.append(stop-start)
+
+plt.hist(times)
