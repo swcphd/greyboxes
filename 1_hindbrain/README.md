@@ -14,3 +14,4 @@ In particular, we will discuss:
 
 To come prepared for this week, check out Braitenburg's book *Vehicles* from 1984.
 
+We'll also learn how to design parts for the robot using Fusion 360, and then manufacture them with a laser cutter and a 3D printer. You need a laptop with Fusion 360 installed and, ideally, the DXF4Laser addin. The addin can be downloaded here: [DXF4Laser.zip](DXF4Laser.zip) and installed using [this method](https://tapnair.github.io/installation.html).

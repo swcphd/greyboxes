@@ -21,9 +21,10 @@ nerve nets? -- 100M years --> [hindbrain](./1_hindbrain/) -- 250M years --> [mid
 
 ## What you need:
 
-- a laptop
-- a GitHub account
+- A laptop, or at least 1 per two people
+- A [GitHub](https://github.com/) account
 - Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- VSCode + the PlatformIO plugin
-- Arduino IDE
-- Fusion360 (available through UCL's [software database](https://swdb.ucl.ac.uk/))
+- [Visual Studio Code](https://code.visualstudio.com/)
+    - with the [PlatformIO extension](https://platformio.org/platformio-ide)
+- [Arduino IDE](https://www.arduino.cc/en/Main/Software)
+- [Autodesk Fusion 360](https://www.autodesk.com/products/fusion-360/students-teachers-educators)
