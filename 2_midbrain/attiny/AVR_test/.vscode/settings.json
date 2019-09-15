@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/spencerw/.platformio/penv/bin:/Users/spencerw/.platformio/penv:/Users/spencerw/miniconda3/bin:/Users/spencerw/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/usr/local/CrossPack-AVR/bin:/usr/local/bin:~/bin",
+        "PLATFORMIO_CALLER": "vscode"
+    }
+}
