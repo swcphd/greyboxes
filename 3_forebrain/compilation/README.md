@@ -35,7 +35,7 @@ Wikipedia's nice explanation of compiling a program:
 
 # Interpretation vs. Compilation
 
-![](compile_v_interpret.png)
+![](images/compile_v_interpret.png)
 
 [source](https://ruslanspivak.com/lsbasi-part1/)
 
@@ -45,7 +45,7 @@ Wikipedia's nice explanation of compiling a program:
 
 # What does a compiler do? 
 
-![](compiler.png)
+![](images/compiler.png)
 
 [An amazing intro course to compilers.](https://www.cs.rpi.edu/academics/courses/fall00/ai/scheme/reference/schintro-v14/schintro_112.html)
 
@@ -105,7 +105,7 @@ This is the best writeup I've seen for walking through the Python VM. You need a
 
 [The view from 30,000ft](https://leanpub.com/insidethepythonvirtualmachine/read#leanpub-auto-the-view-from-30000ft)
 
-![](birdsEyeView.png)
+![](images/birdsEyeView.png)
 
 > ...let’s start with a bird’s eye overview of what happens when you do this: $ python -c 'print("Hello, world!")'. Python’s binary is executed, the standard C library initialization which pretty much any process does happens and then the main function starts executing (see its source, ./Modules/python.c: main, which soon calls ./Modules/main.c: Py_Main). After some mundane initialization stuff (parse arguments, see if environment variables should affect behavior, assess the situation of the standard streams and act accordingly, etc), [./Python/pythonrun.c: Py_Initialize](http://docs.python.org/c-api/init.html#Py_Initialize) is called. In many ways, this function is what ‘builds’ and assembles together the pieces needed to run the CPython machine and makes ‘a process’ into ‘a process with a Python interpreter in it’. Among other things, it creates two very important Python data-structures: the **interpreter state** and **thread state**. It also creates the built-in **module** [sys](http://docs.python.org/library/sys.html) and the module which hosts all [builtins](http://docs.python.org/library/functions.html#built-in-functions). With these in place, Python will do one of several things based on how it was executed. Roughly, it will either execute a string (the -c option), execute a module as an executable (the -m option), or execute a file (passed explicitly on the command line or passed by the kernel when used as an interpreter for a script) or run its [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) loop (this is more a special case of the file to execute being an interactive device). In the case we’re currently following, it will execute a single string, since we invoked it with -c. To execute this single string, ./Python/pythonrun.c: PyRun_SimpleStringFlags is called. This function creates the __main__ **namespace**, which is ‘where’ our string will be executed (if you run $ python -c 'a=1; print(a)', where is a stored? in this namespace). After the namespace is created, the string is executed in it (or rather, interpreted or *evaluated* in it). To do that, you must first transform the string into something that machine can work on.
 
