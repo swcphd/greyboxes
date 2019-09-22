@@ -26,6 +26,8 @@ First things to do in a Terminal window when you get your pi connected and turne
 - `sudo apt-get dist-upgrade`
 - `git pull` (in ~/greyboxes)
 
+![](raspberry_pi_pinout.png)
+
 # How to Enable the Camera
 
 To enable the camera, run
