@@ -1,4 +1,4 @@
-Goal: What happens when you push "Enter" on a python script?
+# What happens when you push "Enter" on a python script?
 
 hint: here is an important file [https://hg.python.org/cpython/file/2.7/Modules/main.c](https://hg.python.org/cpython/file/2.7/Modules/main.c)
 

@@ -6,7 +6,7 @@ We will discuss:
 
 - the command line interface
 - operating systems (briefly)
-- the python virtual machines
+- the python virtual machine
 - version control
 - raspberry pi development
 - machine vision
