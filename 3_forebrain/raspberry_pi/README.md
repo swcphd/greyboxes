@@ -115,11 +115,11 @@ WantedBy=multi-user.target
 which we will put in a folder we'll make called `usr/local/bin` and make it executable with `chmod +x` (change mode, add executable). We'll then enable and start the service:
 
 ```sh
-chmod +x shutdown_button.py
-sudo cp shutdown_button.py /usr/local/bin
-sudo cp shutdown_button.service /etc/systemd/system
-sudo systemctl enable shutdown_button.service
-sudo systemctl start shutdown_button.service
+chmod +x shutdown.py
+sudo cp shutdown.py /usr/local/bin
+sudo cp shutdown.service /etc/systemd/system
+sudo systemctl enable shutdown.service
+sudo systemctl start shutdown.service
 ```
 
 # Startup Scripts 2 Ways
