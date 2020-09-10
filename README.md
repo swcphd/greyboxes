@@ -1,25 +1,29 @@
-# Grey Boxes (not black boxes)
+# Greyboxes
 
-This repository contains "grey boxes" (GBs) of fundamental technologies used in modern neuroscience research.
-Each GB is a stand-alone set of tools, documentation, and tutorials that attempt to de-obfusicate its content.
+Greyboxes is a 3-week intensive, hands-on course meant to open the technological "black boxes" that are at work all around us from our "smart" phones to our Oyster cards. By opening these black boxes, we aim to better understand just how smart (or not) these devices are.
 
-The essential tools (hardware, software, and documentation) used to open black boxes are contained in the "white box" sub-folder.
+The overarching metaphor running through the course is [the evolution of the mammalian brain](https://en.wikipedia.org/wiki/Evolution_of_the_brain#Early_history_of_brain_development):
 
-## Getting Started
+nerve nets? --100M years --> [hindbrain](./hindbrain/) -- 250M years --> [midbrain](./midbrain/) -- 200M years --> [forebrain](./forebrain)
 
-Go through the grey box tutorials, ideally starting with "computers".
 
-## Goals
+## Goals of this course
 
-- Inspirational pep talk -- neuromorphic VLSI chips integrating neuroscience and electronics, Carver Mead + Conway revolution. Touch on light and electromagnetic spectrum, discuss smartphones and the depth of complexity. Set the stage for a hands-on view of the “full stack”.
-- Key takeaways?
+<!-- - Inspirational pep talk -- neuromorphic VLSI chips integrating neuroscience and electronics, Carver Mead + Conway revolution. Touch on light and electromagnetic spectrum, discuss smartphones and the depth of complexity. Set the stage for a hands-on view of the “full stack”.
+- Key takeaways? -->
 - Understanding of binary logical computation
-- Microcontrollers-- why and how
+- Microcontrollers-- why and how?
 - What a computer does (the extent of the abstraction)
 - How data is transmitted through circuits?
 - The difficulty of vision as a machine problem
-Basic programming practices and principles (version control, types of programming)
-- Course materials will be organized on Github as separate activity/day folders with Markdown documents, code. This planning document should be superfluous once the course is created
+- Basic programming practices and principles (version control, types of programming)
 - A good way of motivating topics is discussion like “How would you design _____ so that it is robust/error-proof/etc.” E.g. television remote, keyboard…
-All files live [here](https://github.com/swcphd/greyboxes/tree/master/)
-- We want to stay away from slides as much as possible, as they aren’t easily version-controlled or easy to work on collaboratively
+
+## What you need:
+
+- a laptop
+- a GitHub account
+- Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- VSCode + the PlatformIO plugin
+- Arduino IDE
+- Fusion360 (available through UCL's [software database](https://swdb.ucl.ac.uk/))
