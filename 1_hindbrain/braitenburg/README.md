@@ -1,13 +1,15 @@
-# Braitenburg Vehicles
+# braitenburg v1
 
-## V1
+A BJT can be thought of as a voltage controlled current amplifier, where the HFE value is the current gain.
 
-the common L293 H-bridge IC needs 6V+.
-we should use a better motor driver.
-It's easy to get ones that work at 3V
+We're using the BC338 BJT transistor to amplify the current through the load. The transistor has an HFE of 100. Here's the datasheet:
 
-## V2
+[BC338 datasheet](http://www.mouser.com/ds/2/149/BC337-193546.pdf)
 
-One power idea:
-- use a USB battery for the Raspberry Pi and Arduino
-- use a separate battery pack fo
+![](bc338.png)
+
+To allow more current to be sourced, we need to adjust the amount of voltage on the base. To do so, we build a voltage divider on the base with our LDR and a potentiometer.
+
+Here's a very poorly drawn circuit:
+
+![](circuit.png)

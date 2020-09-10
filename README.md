@@ -12,20 +12,21 @@ nerve nets? -- 100M years --> [hindbrain](./1_hindbrain/) -- 250M years --> [mid
 <!-- - Inspirational pep talk -- neuromorphic VLSI chips integrating neuroscience and electronics, Carver Mead + Conway revolution. Touch on light and electromagnetic spectrum, discuss smartphones and the depth of complexity. Set the stage for a hands-on view of the “full stack”.
 - Key takeaways? -->
 
-- Understanding of binary logical computation
+- What's in a circuit?
+- What is binary logical computation and how did it develop?
 - Microcontrollers-- why and how?
-- What a computer does (the extent of the abstraction)
+- What is a computer?
 - How data is transmitted through circuits?
-- The difficulty of vision as a machine problem
-- Basic programming practices and principles (version control, types of programming)
-- A good way of motivating topics is discussion like “How would you design _____ so that it is robust/error-proof/etc.” E.g. television remote, keyboard…
+- Why is vision a hard problem?
+- What is good programming practice? What is version control?
 
-## What you need:
+By the end of the course, we hope you're a little more confident in working to answer questions like “How would you design _____ so that it is robust/error-proof/reliable/accurate?”
 
-- A laptop, or at least 1 per two people
+## What you'll need:
+
+- A laptop (at least 1 per two people)
 - A [GitHub](https://github.com/) account
 - Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Visual Studio Code](https://code.visualstudio.com/)
-    - with the [PlatformIO extension](https://platformio.org/platformio-ide)
+- [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO extension](https://platformio.org/platformio-ide)
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [Autodesk Fusion 360](https://www.autodesk.com/products/fusion-360/students-teachers-educators)
