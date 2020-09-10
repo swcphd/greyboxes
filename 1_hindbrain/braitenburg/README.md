@@ -10,6 +10,6 @@ We're using the BC338 BJT transistor to amplify the current through the load. Th
 
 To allow more current to be sourced, we need to adjust the amount of voltage on the base. To do so, we build a voltage divider on the base with our LDR and a potentiometer.
 
-Here's a very poorly drawn circuit:
+Here's a "high side switching" circuit for an NPN transistor:
 
-![](circuit.png)
+![](lowside.png)
