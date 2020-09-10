@@ -1,3 +1,12 @@
+Table of Contents
+=================
+
+* [Operating Systems](#operating-systems)
+  * [Threads, Processes, and the GIL](#threads-processes-and-the-gil)
+  * [Timing a Python Loop](#timing-a-python-loop)
+  * [CLI and Signals](#cli-and-signals)
+
+
 # Operating Systems
 
 ![](unix_timeline.png)

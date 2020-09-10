@@ -1,83 +1,140 @@
-# raspberry pi
+Table of Contents
+=================
 
-> You should always do a software shutdown before removing power. Failure to do so risks corrupting files, including OS ones, on the card.
+* [Getting Started](#getting-started)
+* [How to Enable the Camera](#how-to-enable-the-camera)
+* [Making a Reset Button](#making-a-reset-button)
+* [Startup Scripts 2 Ways](#startup-scripts-2-ways)
+  * [1. By editing rc.local](#1-by-editing-rclocal)
+  * [2. By creating a systemd script](#2-by-creating-a-systemd-script)
+* [Wifi / SSH](#wifi--ssh)
+* [Teaching Setup Notes](#teaching-setup-notes)
+  * [General](#general)
+  * [Python Libraries](#python-libraries)
 
-## robots
+# Getting Started
 
-First things to do:
-`sudo apt-get update`
-`sudo apt-get dist-upgrade`
-`git pull` (in ~/greyboxes)
+**You should always do a software shutdown before removing power. Failure to do so risks corrupting files, including OS ones, on the card.**
 
-## Camera
+- username `pi`
+- password `raspberry`
+
+We are running Rasbian Buster on RaspberryPi 3B+
+
+First things to do in a Terminal window when you get your pi connected and turned on:
+- `sudo apt-get update`
+- `sudo apt-get dist-upgrade`
+- `git pull` (in ~/greyboxes)
+
+# How to Enable the Camera
+
+To enable the camera, run
 
 `sudo raspi-config`
 
-enable camera (interfaces —> camera —> yes)
-
-### Reboot button
-
-[https://www.hackster.io/glowascii/raspberry-pi-shutdown-restart-button-d5fd07](https://www.hackster.io/glowascii/raspberry-pi-shutdown-restart-button-d5fd07)
-
-### Run Script at Startup
-
-put the following in a `bash` script in `/etc/rc.local`
-
-`(sleep 10;python [scriptname.py](http://scriptname.py/))&`
-
-[https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/)
-
-## Cloning SD Cards
-
-to make a backup, run `diskutil list` (on OSX) to find your disks (run
-
-then run
-
-    sudo dd bs=4m if=/path/to/sd/card | gzip > /path/to/image.img.gz
-
-or  if you don't want to zip
-
-    sudo dd bs=4m if=/dev/rdisk2 of=/path/to/image.img
+and enable camera (interfaces —> camera —> yes)
 
 # Making a Reset Button
 
-Used this tutorial for inspiration:
+Use this tutorial for inspiration:
 
-[https://github.com/scruss/shutdown_button](https://github.com/scruss/shutdown_button)
+[reset button tutorial](https://github.com/scruss/shutdown_button)
 
-We want a shutdown button that uses standard python libraries  preinstalled on the Pi and which is simple to implement.
+We want a shutdown button that uses standard python libraries preinstalled on the Pi and which is simple to implement. We'll short pin 27 to ground using a push-to-close button.
 
-We'll short pin 27 to ground using a push-to-close button.
+Per the tutorial linked above, our [shutdown.py](./shutdown.py) looks like
 
-our [shutdown.py](http://shutdown.py) looks like
+```python
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+# example gpiozero code that could be used to have a reboot
+#  and a shutdown function on one GPIO button
+# scruss - 2017-10
+
+button_pin=27
+
+from gpiozero import Button
+from signal import pause
+from subprocess import check_call
+
+held_for=0.0
+
+def rls():
+    global held_for
+    if (held_for > 5.0):
+        print("poweroff")
+        try:
+            check_call(['/sbin/poweroff'])
+        except:
+            held_for = 0.0
+    elif (held_for > 2.0):
+        print("reboot")
+        try:
+            check_call(['/sbin/reboot'])
+        except:
+            held_for = 0.0
+    else:
+        print("button pressed")
+        held_for = 0.0
+
+def hld():
+    # callback for when button is held
+    #  is called every hold_time seconds
+    global held_for
+    # need to use max() as held_time resets to zero on last callback
+    held_for = max(held_for, button.held_time + button.hold_time)
+
+button=Button(button_pin, hold_time=1.0, hold_repeat=True)
+button.when_held = hld
+button.when_released = rls
+
+pause() # wait forever
+```
+
+and our `systemd` service looks like
+
+```bash
+[Unit]
+Description=GPIO shutdown button
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/python3 /usr/local/bin/shutdown.py
+
+[Install]
+WantedBy=multi-user.target
+```
 
 
+which we will put in a folder we'll make called `usr/local/bin` and make it executable with `chmod +x` (change mode, add executable). We'll then enable and start the service:
 
-out `systemd` service looks like
+```sh
+chmod +x shutdown_button.py
+sudo cp shutdown_button.py /usr/local/bin
+sudo cp shutdown_button.service /etc/systemd/system
+sudo systemctl enable shutdown_button.service
+sudo systemctl start shutdown_button.service
+```
 
+# Startup Scripts 2 Ways
 
+If you make the reboot button, you'll have used Method 2. Here is another method:
 
-which we will put in a folder we'll make called `usr/local/bin` and make it executable with `chmod +x` (change mode, add executable). then we'll enable and start the service.
+## 1. By editing `rc.local`
 
-    chmod +x shutdown_button.py
-    sudo cp shutdown_button.py /usr/local/bin
-    sudo cp shutdown_button.service /etc/systemd/system
-    sudo systemctl enable shutdown_button.service
-    sudo systemctl start shutdown_button.service
-
-# Running a script at startup/reboot 2 ways
-
-## 1. By editing `[rc.local](http://rc.local)`
-
-run this command to open the `[rc.local](http://rc.local)` file using the `nano` text editor
+run this command to open the `rc.local` file using the `nano` text editor
 
     sudo nano /etc/rc.local
 
 once you're in there, add a line like
 
-    python /home/pi/path/to/your/script.py &
+    python3 /home/pi/path/to/your/script.py &
 
-where the `&` signifies running the command in the background
+where the `&` signifies running the command in the background. Commands in this script is executed at startup.
 
 ## 2. By creating a `systemd` script
 
@@ -90,13 +147,14 @@ then copy it to `/usr/local/bin` where the system knows to look for the script
 `sudo cp shutdown_button.py /usr/local/bin`
 now make a service script using `systemd` trickery. See here for details:
 
-[https://www.shellhacks.com/systemd-service-file-example/](https://www.shellhacks.com/systemd-service-file-example/)
+[systemd tutorial](https://www.shellhacks.com/systemd-service-file-example/)
 
 copy the service script to it's proper place:
 
 `sudo cp my_special_script.service /etc/systemd/system`
 
 then enable and start things up:
+
 `sudo systemctl enable my_special_script.service`
 `sudo systemctl start my_special_script.service`
 
@@ -106,9 +164,9 @@ to check on the service, use this:
 
 # Wifi / SSH
 
-[https://www.raspberrypi.org/documentation/remote-access/ssh/](https://www.raspberrypi.org/documentation/remote-access/ssh/)
+[RaspberryPi docs on SSHing](https://www.raspberrypi.org/documentation/remote-access/ssh/). This is the **S**ecure **SH**ell network protocol to communicate with your Pi from your own machine connected to the same network.
 
-# Setup Notes
+# Teaching Setup Notes
 
 ## General
 
