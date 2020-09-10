@@ -13,4 +13,4 @@ We will discuss:
 
 You will then work to teach your new silicon-based friend how to hunt!
 
-![](https://vignette.wikia.nocookie.net/robotics/images/4/49/Johnny_5.jpg/revision/latest?cb=20140422191506)
+<img align="center" src="https://vignette.wikia.nocookie.net/robotics/images/4/49/Johnny_5.jpg/revision/latest?cb=20140422191506">
