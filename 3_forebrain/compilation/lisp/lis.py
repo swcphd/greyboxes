@@ -169,3 +169,9 @@ def eval(x, env=global_env):
         proc = eval(x[0], env)
         args = [eval(exp, env) for exp in x[1:]]
         return proc(*args)
+
+
+################
+
+if __name__ == "__main__":
+    repl()

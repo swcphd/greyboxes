@@ -2,8 +2,8 @@ import ast
 from pprint import pprint
 
 # read the python file as text
-r = open('hello.py', 'r')
-source = r.read()
+with open('hello.py', 'r') as source_file:
+    source = source_file.read()
 
 # make an AST
 node = ast.parse(source, mode='exec')
