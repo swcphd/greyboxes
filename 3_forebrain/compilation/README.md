@@ -10,7 +10,6 @@ How is a [python dictionary](https://github.com/python/cpython/blob/master/Objec
 
 
 
-
 # Why should I care?
 
 Because Turing said:
@@ -29,9 +28,11 @@ Wikipedia's nice explanation of compiling a program:
 
 
 
+# Wait, what is programming?  
 
+Programs 
 
-
+![](images/programming_taxonomy.png)
 
 # Interpretation vs. Compilation
 
