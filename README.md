@@ -11,6 +11,7 @@ nerve nets? -- 100M years --> [hindbrain](./1_hindbrain/) -- 250M years --> [mid
 
 <!-- - Inspirational pep talk -- neuromorphic VLSI chips integrating neuroscience and electronics, Carver Mead + Conway revolution. Touch on light and electromagnetic spectrum, discuss smartphones and the depth of complexity. Set the stage for a hands-on view of the “full stack”.
 - Key takeaways? -->
+
 - Understanding of binary logical computation
 - Microcontrollers-- why and how?
 - What a computer does (the extent of the abstraction)
